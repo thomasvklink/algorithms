@@ -1,18 +1,33 @@
+ArrayList<FloatDict> circles ;
 void setup() {
   size(640, 360);
   background(255);
-}
 
-void draw() {
+  circles = new ArrayList<FloatDict>();
+  while (circles.size()<45) {
 
-  // Get a gaussian random number w/ mean of 0 and standard deviation of 1.0
-  float xloc = randomGaussian();
+    FloatDict circle = new FloatDict();
+    circle.set("xPos", random(width));
+    circle.set("yPos", random(height));
+    circle.set("r", 32);
 
-  float sd = 60;                // Define a standard deviation
-  float mean = width/2;         // Define a mean value (middle of the screen along the x-axis)
-  xloc = ( xloc * sd ) + mean;  // Scale the gaussian random number by standard deviation and mean
+    boolean overlapping = false;
+    for (int j=0; j < circles.size(); j++) {
+      FloatDict other = circles.get(j);
+      float distance = dist(circle.get("xPos"), circle.get("yPos"), other.get("xPos"), other.get("yPos"));
+      if (distance < circle.get("r") + other.get("r")) {
+        overlapping = true;
+      }
+    }
 
-  fill(0,10);
-  noStroke();
-  ellipse(xloc, random(0, height), 16, 16);   // Draw an ellipse at our "normal" random position
+    if (!overlapping) {
+      circles.add(circle);
+    }
+  }
+
+  for (FloatDict c : circles) {
+    fill(255, 0, 0);
+    noStroke();
+    ellipse(c.get("xPos"), c.get("yPos"), c.get("r")*2, c.get("r")*2);
+  }
 }
