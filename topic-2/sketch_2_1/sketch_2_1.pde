@@ -1,3 +1,8 @@
+/* topic: random function, array, distribution exercise 2.1 
+Made by: Thomas van Klink & Tristan van Marle
+For Algorithms in Creative Technology
+4-5-2021*/
+
 int diceSize = 100; 
 int count1 = 0;
 int count2 = 0;

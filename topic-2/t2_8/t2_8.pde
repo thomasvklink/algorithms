@@ -1,3 +1,8 @@
+/*  topic: 3D Perlin noise exercise 2.8
+ Made by: Thomas van Klink & Tristan van Marle
+ For Algorithms in Creative Technology
+ 4-5-2021*/
+
 int cols, rows;
 int scl = 20;
 int w = 2000;

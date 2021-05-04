@@ -1,3 +1,8 @@
+/*  topic: 1D Perlin noise exercise 2.6
+Made by: Thomas van Klink & Tristan van Marle
+For Algorithms in Creative Technology
+4-5-2021*/
+
 float xPos = 0;
 float yPos = height*2;
 float inc = 0.01;

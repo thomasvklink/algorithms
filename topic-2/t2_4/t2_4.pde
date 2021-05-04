@@ -1,3 +1,8 @@
+/* topic: random function, array of objects exercise 2.4
+Made by: Thomas van Klink & Tristan van Marle
+For Algorithms in Creative Technology
+4-5-2021*/
+
 ArrayList<FloatDict> circles ;
 void setup() {
   size(640, 360);

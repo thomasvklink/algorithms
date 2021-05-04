@@ -1,6 +1,10 @@
 // Daniel Shiffman
 // The Nature of Code
 // http://natureofcode.com
+/*  topic: 3D Perlin noise exercise 2.7
+ Made by: Thomas van Klink & Tristan van Marle
+ For Algorithms in Creative Technology
+ 4-5-2021*/
 float s;
 float increment = 0.02;
 void setup() {
@@ -10,9 +14,9 @@ void setup() {
 
 void draw() {
   background(0);
- for(int i=0; i <10; i++){
-  s = millis(); 
- }
+  for (int i=0; i <10; i++) {
+    s = millis();
+  }
   // Optional: adjust noise detail here
   // noiseDetail(8,0.65f);
 

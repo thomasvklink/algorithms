@@ -1,3 +1,8 @@
+/* topic: 2 x 1D Perlin noise and seeds exercise 2.5
+Made by: Thomas van Klink & Tristan van Marle
+For Algorithms in Creative Technology
+4-5-2021*/
+
 float xoff = 0.0;
 float yoff = 0.0;
 float xincrement = 0.01; 
