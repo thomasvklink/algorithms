@@ -7,8 +7,8 @@ class Ball { //class initialisation
   int r;
   Ball(float x, float y) {  //constructor
     pos=new PVector(x, y);
-    speed=new PVector(random(-4, 4), random(0, 2));
-    gravity = new PVector(0, 0.2);
+    speed=new PVector(0, 0);
+    gravity = new PVector(0, 0);
     r=30;
   }
   void show() {
@@ -16,13 +16,28 @@ class Ball { //class initialisation
     circle(pos.x, pos.y, r);
   }
   void update() {
-    if (pos.y>height) {
-      pos.y=-20;
+    if (r+pos.y>=height) {
+      speed=new PVector(0, 0);
+      gravity = new PVector(0, 0);
+    }
+    if (r+pos.y<=0) {
+      speed.y=-speed.y;
     }
     if (pos.x+speed.x>width||pos.x+speed.x<0) {
       speed.x=-speed.x;
     } 
+    speed.add(gravity);
     pos.add(speed);
-    pos.add(gravity);
+  }
+  void drag(float initMouseX, float initMouseY) {
+    pos = new PVector(initMouseX, initMouseY);
+    speed = new PVector(0, 0);
+    gravity= new PVector(0, 0);
+  }
+  void released(float initMouseX, float initMouseY, float ballMovementX, float ballMovementY) {
+    PVector temporary = new PVector ((-(initMouseX-ballMovementX)), -(initMouseY-ballMovementY));
+    speed=temporary.normalize().copy();
+    speed.mult(temporary.mag()*3);
+    gravity = new PVector(0, 0.2);
   }
 }
