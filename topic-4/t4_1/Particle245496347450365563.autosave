@@ -1,0 +1,31 @@
+//This is a class Particle in which the particle gets created.
+
+class Particle {  //class initialisation
+
+  //setting variables
+  PVector pos;
+  PVector speed;
+  int r;
+  int lifetime;
+
+  Particle(float x, float y) {  //constructor
+    pos=new PVector(x, y);
+    speed=new PVector(random(-4, 4), random(-8, -4));
+    r=30;
+    lifetime = 255;
+  }
+
+  void show() {
+    fill(255, 91, 20, lifetime);
+    circle(pos.x, pos.y, r);
+  }
+
+  void update() {
+    pos.add(speed);
+    lifetime --;
+  }
+
+  boolean isDead() {
+    return lifetime<0;
+  }
+}

@@ -2,9 +2,9 @@
 Rocket rocket;
 
 void setup() {
-  size(1080,720);
+  size(1080, 720);
   rectMode(CENTER);
-  rocket = new Rocket(width/2,height-100);
+  rocket = new Rocket(width/2, height-100);
 }
 
 void draw() {
@@ -19,6 +19,6 @@ void keyPressed() {
   }
 }
 
-void mouseDragged(){
+void mouseDragged() {
   rocket.mouseControl(mouseX, mouseY);
 }
