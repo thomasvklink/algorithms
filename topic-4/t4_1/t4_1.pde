@@ -4,7 +4,7 @@ Rocket rocket;
 void setup() {
   size(1080, 720);
   rectMode(CENTER);
-  rocket = new Rocket(width/2, height-100);
+  rocket = new Rocket(width/2,height/2);
 }
 
 void draw() {
@@ -13,12 +13,6 @@ void draw() {
   rocket.update();
 }
 
-void keyPressed() {
-  if (key == CODED) {
-    rocket.keyControl(keyCode);
-  }
-}
-
-void mouseDragged() {
-  rocket.mouseControl(mouseX, mouseY);
+void mouseDragged(){
+  rocket.control(mouseX, mouseY);
 }

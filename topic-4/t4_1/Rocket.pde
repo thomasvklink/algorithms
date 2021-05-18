@@ -8,7 +8,7 @@ class Rocket { //class initialisation
 
   Rocket(float x, float y) {  //constructor
     position=new PVector(x, y);
-    speed=new PVector(0, 0);
+    speed=new PVector(0, 1);
     particleSystem = new ParticleSystem(width/2, height/4);
   }
 
@@ -26,10 +26,7 @@ class Rocket { //class initialisation
     fill(0, 155, 255);
     circle(0, -40, 15);
     popMatrix();
-
     particleSystem.show();
-
-
     //noStroke();
     //fill(198,0,7);
     //rect(position.x,position.y, 30, 100);
@@ -47,27 +44,13 @@ class Rocket { //class initialisation
     particleSystem.update();
   }
 
-  void keyControl(int input) {
-
-    if (input == UP) {
-      speed.y--;
-    } else if (input == DOWN) {
-      speed.y++;
-    }
-
-    if (input == LEFT) {
-      speed.x--;
-    } else if (input == RIGHT) {
-      speed.x++;
-    }
-  }
-
-  void mouseControl(int mousePosX, int mousePosY) {
+  void control(int mousePosX, int mousePosY) {
+    magValue = magValue + 0.1;
     mouse = new PVector(mousePosX, mousePosY);
-    println(speed.heading());
-    //mouse.sub(position);
-    stroke(255); 
-    line(position.x, position.y, mouse.x, mouse.y);
+    mouse.sub(position);
+    mouse.setMag(magValue);
+    speed = mouse;
+    
   }
 
   void bound() {
