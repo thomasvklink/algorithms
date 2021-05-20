@@ -21,7 +21,6 @@ class ParticleSystem { //class initialisation
       Particle p = particles.get(i);
       p.update();
       if (p.isDead()) { //If the particle is dead, reset it.
-        //p.reset(posX, posY); //Position is passed to respawn the particle on the correct location
         particles.remove(i);
       }
     }

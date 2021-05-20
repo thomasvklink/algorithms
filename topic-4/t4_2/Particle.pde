@@ -8,19 +8,25 @@ class Particle { //class initialisation
   int r;
   int lifetime;
   float green;
+  int shape;
 
   Particle(float x, float y) {  //constructor
     pos=new PVector(x, y);
     speed=new PVector(random(-1, 1), random(2, 4));
-    r=15; //10px radius
+    r=15; //15px radius
     lifetime = int(random(20, 90)); //Random lifetime between 20 - 90 frames
+    shape = int(random(1, 3));
   }
 
   void show() {
     green = lifetime*1.5; //Color fade from orange to red
     fill(255, green, 20, lifetime); //Transparency increases as lifetime does. Fade out effect.
-    circle(pos.x, pos.y, r); //Draw the actual circle
-    rect(pos.x, pos.y, 10, 10); //Draw the actual rectangle
+    if (shape == 1) {
+      circle(pos.x, pos.y, r*1.5); //Draw the actual circle
+    } else {
+      fill(134, 134, 134, lifetime); //Transparency increases as lifetime does. Fade out effect.
+      rect(pos.x, pos.y, r, r); //Draw the actual rectangle
+    }
   }
 
   void update() {
