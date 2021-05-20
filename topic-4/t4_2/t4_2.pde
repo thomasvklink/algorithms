@@ -1,12 +1,12 @@
-//Topic 4 - 1
+//Topic 4 - 2
 Rocket rocket;
 Stars stars;
 
 void setup() {
   size(1080, 720);
   rectMode(CENTER);
-  rocket = new Rocket(width/2,height-100);
-  stars = new Stars(width/2,height/2);
+  rocket = new Rocket(width/2, height-100);
+  stars = new Stars(width/2, height/2);
 }
 
 void draw() {
@@ -17,6 +17,6 @@ void draw() {
   rocket.update();
 }
 
-void mouseDragged(){
+void mouseDragged() {
   rocket.control(mouseX, mouseY);
 }

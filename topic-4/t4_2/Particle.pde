@@ -12,15 +12,15 @@ class Particle { //class initialisation
   Particle(float x, float y) {  //constructor
     pos=new PVector(x, y);
     speed=new PVector(random(-1, 1), random(2, 4));
-    r=10; //10px radius
+    r=15; //10px radius
     lifetime = int(random(20, 90)); //Random lifetime between 20 - 90 frames
-    
   }
 
   void show() {
     green = lifetime*1.5; //Color fade from orange to red
     fill(255, green, 20, lifetime); //Transparency increases as lifetime does. Fade out effect.
     circle(pos.x, pos.y, r); //Draw the actual circle
+    rect(pos.x, pos.y, 10, 10); //Draw the actual rectangle
   }
 
   void update() {

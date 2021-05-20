@@ -4,29 +4,33 @@ class ParticleSystem { //class initialisation
 
   //setting variables
   PVector pos;
-  Particle[] particles;
+  ArrayList<Particle> particles;
 
   ParticleSystem(float x, float y) { //constructor
     pos= new PVector(x, y);
-    particles = new Particle[1000]; 
-
-    for (int i=0; i < particles.length; i++) {
-      particles[i] = new Particle(x, y);
+    particles = new ArrayList<Particle>();
+  }
+  void mouseAdd(float posX, float posY) {
+    for (int i=0; i < 5; i++) {
+      particles.add(new Particle(posX, posY));
     }
   }
 
-  void update(float posX, float posY) {
-    for (int i=0; i<particles.length; i++) {
-      particles[i].update();
-      if (particles[i].isDead()) { //If the particle is dead, reset it.
-        particles[i].reset(posX, posY); //Position is passed to respawn the particle on the correct location
+  void update() {
+    for (int i=0; i<particles.size(); i++) {
+      Particle p = particles.get(i);
+      p.update();
+      if (p.isDead()) { //If the particle is dead, reset it.
+        //p.reset(posX, posY); //Position is passed to respawn the particle on the correct location
+        particles.remove(i);
       }
     }
   }
 
   void show() {
-    for (int i=0; i<particles.length; i++) {
-      particles[i].show();
+    for (int i=0; i<particles.size(); i++) {
+      Particle p = particles.get(i);
+      p.show();
     }
   }
 }

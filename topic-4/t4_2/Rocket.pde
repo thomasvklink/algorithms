@@ -38,11 +38,7 @@ class Rocket { //class initialisation
   void update() {
     position.add(speed); //SPEEEEED
     bound(); //Method for keeping the rocket in the window
-
-    PVector thruster = new PVector(-45, 0); //Update particle spawn location to match rocket rotation
-    float rotation = speed.heading();
-    thruster.rotate(rotation);
-    thrust.update((position.x+thruster.x), (position.y+thruster.y));
+    thrust.update();
   }
 
   void control(int mousePosX, int mousePosY) { //Controls of the rocket
@@ -55,6 +51,10 @@ class Rocket { //class initialisation
     mouse.sub(position); //Subtract rocket position with the current mouse positon
     mouse.setMag(magValue); //Set a fixed magnitude to prevent the rocket speeding off
     speed = mouse; //Use the mouse vector as speed
+    PVector thruster = new PVector(-45, 0); //Update particle spawn location to match rocket rotation
+    float rotation = speed.heading();
+    thruster.rotate(rotation);
+    thrust.mouseAdd((position.x+thruster.x), (position.y+thruster.y));
   }
 
   void bound() { //Limit movements of the rocket to stay in the window
