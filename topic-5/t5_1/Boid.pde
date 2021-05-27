@@ -7,12 +7,14 @@
 
 class Boid {
 
+  Rock rock;
   PVector position;
   PVector velocity;
   PVector acceleration;
   float r;
   float maxforce;    // Maximum steering force
   float maxspeed;    // Maximum speed
+  color fish;
 
   Boid(float x, float y) {
     acceleration = new PVector(0,0);
@@ -21,6 +23,10 @@ class Boid {
     r = 3.0;
     maxspeed = 3;
     maxforce = 0.05;
+    
+    fish = color(random(0,255),random(0,255),random(0,255));
+    
+    rock = new Rock(width/2,height/2);
   }
 
   void run(ArrayList<Boid> boids) {
@@ -77,27 +83,32 @@ class Boid {
   void render() {
     // Draw a triangle rotated in the direction of velocity
     float theta = velocity.heading2D() + radians(90);
-    fill(175);
-    stroke(0);
+    fill(fish);
+    noStroke();
     pushMatrix();
     translate(position.x,position.y);
     rotate(theta);
-    beginShape(TRIANGLES);
-    vertex(0, -r*2);
-    vertex(-r, r*2);
-    vertex(r, r*2);
-    endShape();
+    ellipse(0,0,10,15);
+    triangle(0,0,5,10,-5,10);
     popMatrix();
   }
 
-  // Wraparound
+  // Bounce against borders
   void borders() {
-    if (position.x < -r) position.x = width+r;
-    if (position.y < -r) position.y = height+r;
-    if (position.x > width+r) position.x = -r;
-    if (position.y > height+r) position.y = -r;
+    if (position.x < -r) velocity.x = - velocity.x;
+    if (position.y < -r) velocity.y = - velocity.y;
+    if (position.x > width+r) velocity.x = - velocity.x;
+    if (position.y > height+r) velocity.y = - velocity.y;
   }
 
+  void collide(){
+    //ArrayList rocks
+    //For every rock in the system check position
+    if (rock.pos.x-25 > position.x && rock.pos.x+25 < position.x) velocity.x = - velocity.x;
+    if (rock.pos.y < -r) velocity.y = - velocity.y;
+    if (position.x > width+r) velocity.x = - velocity.x;
+  }
+  
   // Separation
   // Method checks for nearby boids and steers away
   PVector separate (ArrayList<Boid> boids) {
