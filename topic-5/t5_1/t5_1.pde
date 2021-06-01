@@ -2,7 +2,7 @@ Flock flock;
 Rock rock;
 
 void setup() {
-  size(640,360);
+  size(1080,720);
   rectMode(CENTER);
   flock = new Flock();
   // Add an initial set of boids into the system
@@ -10,7 +10,7 @@ void setup() {
     Boid b = new Boid(width/2,height/2);
     flock.addBoid(b);
   }
-  rock = new Rock(width/2, height/2);
+  rock = new Rock(width/2+100, height/2);
 }
 
 void draw() {

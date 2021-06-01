@@ -9,7 +9,7 @@ class Rock {
   void render() {
     noStroke();
     fill(200);
-    rect(pos.x, pos.y, 50,50);
+    circle(pos.x, pos.y, 50);
   }
   
 }
