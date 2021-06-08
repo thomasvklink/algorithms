@@ -9,22 +9,26 @@ class Segment {
   
   Segment(float x, float y) {
     c =100;
-    f = 0.1;
-    F=0;
+    f = 10;
+    F=3;
     v=0;
-    m=1;
-    angle = 0;
+    m=100;
+    angle = 0.2;
   }
 
   void show() {
     
   }
 
-  void update(float v, float f) {
-    F= F/m;
-    v += F;
+  void update(float v, float F) {
+    //F = F/m;
+    //v += F;
+    //angle += v;
+    //F = angle/c + (f*v);
+    v += F/m;
     angle += v;
-    F = angle/c+f;
-    println(F);
+    F = -((angle/c) + (f * v));
+    println(F, v, f);
+    println(angle);
   }
 }
