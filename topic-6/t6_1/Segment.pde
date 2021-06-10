@@ -1,34 +1,25 @@
 class Segment {
 
-  float v;
-  float m;
-  float F;
-  float angle;
+  float incomingVelocity;
+  float followingTorque;
+  float torque = 0.05;
   float f;
   float c;
-  
+  float angularVelocity = 0.01;
+  float totalRotation = 0.5;
+
   Segment(float x, float y) {
-    c =100;
-    f = 10;
-    F=3;
-    v=0;
-    m=100;
-    angle = 0.2;
+    c = 100;
+    f = 0.03;
   }
 
-  void show() {
-    
-  }
 
-  void update(float v, float F) {
-    //F = F/m;
-    //v += F;
-    //angle += v;
-    //F = angle/c + (f*v);
-    v += F/m;
-    angle += v;
-    F = -((angle/c) + (f * v));
-    println(F, v, f);
-    println(angle);
-  }
+void update(float incomingVelocity, float followingTorque) {
+  //comments!
+  float usedVelocity = angularVelocity - incomingVelocity; 
+  float friction = usedVelocity * f;
+  torque = (1 / c * totalRotation + friction);
+  totalRotation += usedVelocity;
+  angularVelocity += followingTorque - torque;
+}
 }
