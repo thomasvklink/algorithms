@@ -21,10 +21,11 @@ class Boat {
   float totalRotation = 0.0;
   
   float rotation;
-  float bars;
+  float bars = 20;
   boolean isMoving;
 
   Boat(int xPos, int yPos) { //constructor
+    drops = new ParticleSystem(xPos, yPos);
     this.xPos = xPos;
     this.yPos = yPos;
     c=300;
@@ -33,6 +34,7 @@ class Boat {
 
   void load() {
     boat = loadShape("boat.svg");
+    support = loadShape("support.svg");
   }
 
   void render() {
@@ -49,7 +51,7 @@ class Boat {
     shape(boat, 0, 210);
     popMatrix();
     
-    shape(support, width/2,height/2);
+    shape(support, width/2,height/2-100);
   }
 
   void update() {
