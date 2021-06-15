@@ -2,9 +2,11 @@ Flocking flock;
 Water water;
 
 void setup() {
-  size(600, 600);
   flock = new Flocking();
   water = new Water();
+  fullScreen();
+  ship = new Boat(width/2, height/2);
+  ship.load();
 }
 
 void draw() {
@@ -12,6 +14,7 @@ void draw() {
   flock.render();
   flock.update();
   water.render();
+  ship.render();
 }
 
 void mouseDragged(){
