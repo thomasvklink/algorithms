@@ -4,6 +4,7 @@ class Boat {
   int yPos;
 
   PShape boat;
+  PShape support;
 
   float incomingVelocity;
   float followingTorque;
@@ -11,29 +12,39 @@ class Boat {
   float f;
   float c;
   float angularVelocity = 0.001;
-  float totalRotation = 1.5;
+  float totalRotation = 0.0;
   
   float rotation;
+  float bars;
   boolean isMoving;
-  color control;
 
   Boat(int xPos, int yPos) {
     this.xPos = xPos;
     this.yPos = yPos;
     c=300;
     f=0.01;
+    bars = 20;
   }
 
   void load() {
-    //boat = loadShape("boat.svg");
+    boat = loadShape("boat.svg");
+    support = loadShape("support.svg");
   }
 
   void render() {
     pushMatrix();
     translate(xPos, yPos-200);
     rotate(totalRotation);
-    shape(boat, 0, 230);
+      pushMatrix();
+      translate(0,670);
+      rotate(-bars);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+    shape(boat, 0, 210);
     popMatrix();
+    
+    shape(support, width/2,height/2);
   }
   
   void update(){
@@ -44,6 +55,11 @@ class Boat {
     } else {
       isMoving = true;
     }
+    
+    //if (bars == 
+    
+    //bars = bars + 0.1;
+    println(bars);
     
     //println(totalRotation, isMoving);
   };
