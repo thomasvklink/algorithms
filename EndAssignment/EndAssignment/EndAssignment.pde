@@ -1,9 +1,12 @@
+Flocking flock;
+Water water;
 Boat ship;
 
-void setup(){
+void setup() {
+  flock = new Flocking();
+  water = new Water();
   fullScreen();
   shapeMode(CENTER);
-  //size(1920,1080);
   ship = new Boat(width/2, height/2);
   ship.load();
 }
@@ -11,5 +14,12 @@ void setup(){
 void draw(){
   background(224,255,255);
   ship.update();
+  water.movingWater();
+  flock.update();
+  flock.render();
   ship.render();
+}
+
+void mouseDragged(){
+  flock.addBird(new Bird(mouseX, mouseY));
 }

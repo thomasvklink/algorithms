@@ -25,7 +25,7 @@ class Boat {
   }
 
   void load() {
-    boat = loadShape("boat.svg");
+    //boat = loadShape("boat.svg");
   }
 
   void render() {
