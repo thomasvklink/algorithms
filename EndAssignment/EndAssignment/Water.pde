@@ -1,19 +1,20 @@
 class Water {
-
+  float xPos = 0;
+  float yPos = height;
+  float offset = 0;
+  float inc = 0.01;
+  
   Water() {
   }
 
   void render() {
-    float xPos = 0;
-    float yPos = height*2;
-    float offset = 0;
-    float inc = 0.01;
+
 
     offset += inc;
-    stroke(255, 206, 8);
+    stroke(5, 38, 123);
     beginShape(LINES);
     for (int i = 0; i<width; i++) {
-      float n = noise((offset+(i*0.003)))*height;
+      float n = noise((offset+(i*0.002)))*height/2;
       vertex(xPos+i, yPos);
       vertex(xPos+i, yPos-n);
     };
