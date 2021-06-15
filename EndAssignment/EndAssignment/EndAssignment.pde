@@ -1,5 +1,6 @@
 Flocking flock;
 Water water;
+Boat ship;
 
 void setup() {
   flock = new Flocking();
@@ -13,7 +14,7 @@ void draw() {
   background(224, 255, 255);
   flock.render();
   flock.update();
-  water.render();
+  water.movingWater();
   ship.render();
 }
 

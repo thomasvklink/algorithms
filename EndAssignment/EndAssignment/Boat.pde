@@ -11,10 +11,10 @@ class Boat {
   }
 
   void load() {
-    boat = loadShape("boat.svg");
+    //boat = loadShape("boat.svg");
   }
   
   void render(){
-    shape(boat, 0, 0);
+    //shape(boat, 0, 0);
   }
 }

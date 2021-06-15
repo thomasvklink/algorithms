@@ -1,26 +1,25 @@
-class Water {
-  float xPos = 0;
-  float yPos = height;
-  float offset = 0;
-  float inc = 0.01;
-  
+/* this is a class for making the water under the boat.
+The water moves in calm waves made by perlin 2D noise */
+
+class Water { 
+  float yoff = 0.0;   
+
   Water() {
   }
 
-  void render() {
-
-
-    offset += inc;
+  void movingWater() {
     stroke(5, 38, 123);
-    beginShape(LINES);
-    for (int i = 0; i<width; i++) {
-      float n = noise((offset+(i*0.002)))*height/2;
-      vertex(xPos+i, yPos);
-      vertex(xPos+i, yPos-n);
-    };
-    endShape();
-  }
-
-  void update() {
+    beginShape();
+    float xoff = 0;  
+    fill(5, 38, 123);
+    for (int x = 0; x < width; x+=15) {
+      float y = map(noise(xoff, yoff), 0, 1, 200, 300);
+      vertex(x*1.01, y*3.8);
+      xoff+=0.01;
+    }
+    yoff+=0.005;
+    vertex(width, height*4);
+    vertex(0, height*4);
+    endShape(CLOSE);
   }
 }
