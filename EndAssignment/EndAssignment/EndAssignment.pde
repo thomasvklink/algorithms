@@ -11,10 +11,14 @@ void setup() {
   ship = new Boat(width/2, height/2);
   ship.load();
   control = new Control(width-200, height-200);
+  for (int i = 0; i < 20; i++) {
+    flock.addBird(new Bird(random(0, width), random(height/6, 0)));
+  }
 }
 
-void draw(){
-  background(224,255,255);
+void draw() {
+  background(224, 255, 255);
+  ship.particles();
   ship.update();
   water.movingWater();
   flock.update();

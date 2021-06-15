@@ -1,11 +1,17 @@
 class Boat {
 
+  //calling classes
+  ParticleSystem drops;
+
+  //settting variables for position
   int xPos;
   int yPos;
 
+  //calling in the PShape
   PShape boat;
   PShape support;
 
+  //setting variables for the formula's of the mass-spring damper system
   float incomingVelocity;
   float followingTorque;
   float torque = 0.001;
@@ -18,22 +24,21 @@ class Boat {
   float bars;
   boolean isMoving;
 
-  Boat(int xPos, int yPos) {
+  Boat(int xPos, int yPos) { //constructor
     this.xPos = xPos;
     this.yPos = yPos;
     c=300;
     f=0.01;
-    bars = 20;
   }
 
   void load() {
     boat = loadShape("boat.svg");
-    support = loadShape("support.svg");
   }
 
   void render() {
+    drops.show();
     pushMatrix();
-    translate(xPos, yPos-200);
+    translate(xPos, yPos-300);
     rotate(totalRotation);
       pushMatrix();
       translate(0,670);
@@ -46,24 +51,19 @@ class Boat {
     
     shape(support, width/2,height/2);
   }
-  
-  void update(){
+
+  void update() {
     swing(incomingVelocity, followingTorque);
-    
-    if (abs(totalRotation) < 0.02){
+    drops.update();
+    if (abs(totalRotation) < 0.02) {
       isMoving = false;
     } else {
       isMoving = true;
     }
     
-    //if (bars == 
-    
-    //bars = bars + 0.1;
-    println(bars);
-    
     //println(totalRotation, isMoving);
   };
-  
+
   void swing(float incomingVelocity, float followingTorque) {
     float usedVelocity = angularVelocity - incomingVelocity; 
     float friction = usedVelocity * f;
@@ -71,5 +71,10 @@ class Boat {
     totalRotation += usedVelocity;
     angularVelocity += followingTorque - torque;
   }
-
+  void particles() {
+    if (totalRotation > 0.3 || totalRotation < -0.3) {
+      drops.particleAdd(random(ship.xPos+150, ship.xPos-150) , yPos+400);
+      println("it works");
+    }
+  }
 }
