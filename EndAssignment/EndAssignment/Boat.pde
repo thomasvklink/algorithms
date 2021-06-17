@@ -42,12 +42,89 @@ class Boat {
     pushMatrix();
     translate(xPos, yPos-300);
     rotate(totalRotation);
+    
+      //Seat 1
+      pushMatrix();
+      translate(-165,655);
+      rotate(bars-3.2);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+    
+      //Seat 2
+      pushMatrix();
+      translate(-120,660);
+      rotate(bars-3.2);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+    
+      //Seat 3
+      pushMatrix();
+      translate(-75,665);
+      rotate(bars-3.2);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+    
+      //Seat 4
+      pushMatrix();
+      translate(-75,665);
+      rotate(bars-3.2);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+    
+      //Seat 5
+      pushMatrix();
+      translate(-25,670);
+      rotate(bars-3.2);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+    
+      //MIDDLE OF BOAT
+      
+      //Seat 6
       pushMatrix();
       translate(0,670);
       rotate(-bars);
       stroke(0);
       rect(0,0,40,1);
       popMatrix();
+      
+      //Seat 7
+      pushMatrix();
+      translate(50,670);
+      rotate(-bars);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+      
+      //Seat 8
+      pushMatrix();
+      translate(95,665);
+      rotate(-bars);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+      
+      //Seat 9
+      pushMatrix();
+      translate(140,660);
+      rotate(-bars);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+      
+      //Seat 10
+      pushMatrix();
+      translate(185,655);
+      rotate(-bars);
+      stroke(0);
+      rect(0,0,40,1);
+      popMatrix();
+      
     shape(boat, 0, 210);
     popMatrix();
     

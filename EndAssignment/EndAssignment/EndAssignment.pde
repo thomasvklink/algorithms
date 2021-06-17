@@ -28,10 +28,6 @@ void draw() {
   control.render();
 }
 
-void mouseDragged(){
-  flock.addBird(new Bird(mouseX, mouseY));
-}
-
 void mousePressed(){
   control.operate(mouseX,mouseY);
 }
