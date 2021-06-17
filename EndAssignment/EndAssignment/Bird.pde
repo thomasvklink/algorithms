@@ -5,14 +5,19 @@
 
 class Bird {
 
+  //variables to use the gif
   PApplet app; 
   Gif bird;
+  
+  //PVectors which are used for movement
   PVector pos;
   PVector vel;
   PVector acc;
+  //variables which are used for movement
   float max;
   float force;
-  color birdColor;
+  
+  //variables which are used for limiting the flying field of the birds
   int xSize;
   int ySize;
 
@@ -22,7 +27,6 @@ class Bird {
     acc = new PVector(0, 0);
     max = 3;
     force = 0.01;
-    birdColor = color(random(0, 255), random(0, 255), random(0, 255));
     xSize = 50;
     xSize = 100;
     bird = new Gif(app, "bird1.gif");
@@ -31,8 +35,6 @@ class Bird {
 
   void render() {
     float theta = vel.heading();
-    fill(birdColor);
-    noStroke();
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
