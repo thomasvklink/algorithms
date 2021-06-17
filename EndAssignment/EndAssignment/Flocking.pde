@@ -21,9 +21,9 @@ class Flocking {
           PVector v2 = coh(f, other);
           PVector v3 = ali(f, other);
           // Arbitrarily weight these forces
-          v1.mult(5.0); //Seperation
-          v2.mult(1.0); //Cohesion
-          v3.mult(1.0); //Alignment
+          v1.mult(4.0); //Seperation
+          v2.mult(0.5); //Cohesion
+          v3.mult(0.5); //Alignment
           //Apply force vectors
           apply(f, v1);
           apply(f, v2);

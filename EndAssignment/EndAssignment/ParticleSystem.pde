@@ -9,7 +9,7 @@ class ParticleSystem { //class initialisation
     particles = new ArrayList<Particle>();
   }
   void particleAdd(float posX, float posY) {
-    for (int i=0; i < 20; i++) {
+    for (int i=0; i < 10; i++) {
       particles.add(new Particle(posX, posY));
     }
   }

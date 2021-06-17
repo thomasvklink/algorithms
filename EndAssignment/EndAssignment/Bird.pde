@@ -1,32 +1,38 @@
 class Bird {
 
+  PApplet app; 
+  Gif bird;
   PVector pos;
   PVector vel;
   PVector acc;
   float max;
   float force;
-  color bird;
-  int size;
+  color birdColor;
+  int xSize;
+  int ySize;
 
-  Bird(float x, float y) {  //constructor
+  Bird(float x, float y, PApplet app) {  //constructor
     pos = new PVector(x, y);
     vel = new PVector(random(-1, 1), random(-1, 1));
     acc = new PVector(0, 0);
     max = 3;
     force = 0.01;
-    bird = color(random(0, 255), random(0, 255), random(0, 255));
-    size = 1;
+    birdColor = color(random(0, 255), random(0, 255), random(0, 255));
+    xSize = 50;
+    xSize = 100;
+    bird = new Gif(app, "bird1.gif");
+    bird.loop();
   }
 
   void render() {
-    float theta = vel.heading() + radians(90);
-    fill(bird);
+    float theta = vel.heading();
+    fill(birdColor);
     noStroke();
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
-    ellipse(0, 0, 10, 15);
-    triangle(0, 0, 5, 10, -5, 10);
+    tint(0, 0, 0);
+    image(bird, 0, 0, 50, 100);
     popMatrix();
   }
   void update() {
@@ -38,9 +44,9 @@ class Bird {
   }
 
   void borders() {
-    if (pos.x < -size) vel.x = - vel.x;
-    if (pos.y < -size) vel.y = - vel.y;
-    if (pos.x > width+size) vel.x = - vel.x;
-    if (pos.y > height/6+size) vel.y = - vel.y;
+    if (pos.x < -xSize) vel.x = - vel.x;
+    if (pos.y < -ySize) vel.y = - vel.y;
+    if (pos.x > width+xSize) vel.x = - vel.x;
+    if (pos.y > height/6+ySize) vel.y = - vel.y;
   }
 }
