@@ -1,3 +1,8 @@
+/*
+  This is a class Boat that call forth the svg file of the boat as well as the constraints which are on the ship and the drops that drip of the ship.
+  It handles the formula's for the mass spring damper as well.
+*/
+
 class Boat {
 
   //calling classes

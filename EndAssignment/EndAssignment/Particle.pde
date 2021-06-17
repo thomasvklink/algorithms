@@ -1,4 +1,8 @@
-//This is a class Particle in which the particle gets created.
+/*
+This is a class Particle in which the particle gets created. 
+This particle will represent the waterdrop which drips from the boat
+*/
+
 
 class Particle { //class initialisation
 

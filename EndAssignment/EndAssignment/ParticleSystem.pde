@@ -1,4 +1,6 @@
-//This is the class that calls the particles from the class Particle and puts them together in one ParticleSystem object.
+/*
+This is the class that calls the particles from the class Particle and puts them together in one ParticleSystem object.
+*/
 
 class ParticleSystem { //class initialisation
 

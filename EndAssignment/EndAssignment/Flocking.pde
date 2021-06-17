@@ -1,3 +1,8 @@
+/*
+  This is a class that calls a list of birds from the Bird class. 
+  Furthermore, in this class the principle of Flocking is created and applied to the birds.
+*/
+
 class Flocking {
 
   ArrayList<Bird> birds;

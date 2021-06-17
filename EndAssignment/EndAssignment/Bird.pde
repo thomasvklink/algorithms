@@ -1,3 +1,8 @@
+/*
+  This is a class Bird that call forth the gif for the birds to create nice looking flapping birds. 
+  These birds will later on be used in the flocking class.
+*/
+
 class Bird {
 
   PApplet app; 

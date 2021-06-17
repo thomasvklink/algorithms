@@ -1,3 +1,8 @@
+/*
+  This is a class Control used to create the front display in which is shown how the user can interact with the program.
+ It handles the controls of the ship and the constraints of the guests as well as being able to unload and onload guests onto the ship.
+*/
+
 class Control {
 
   int xPos;

@@ -1,3 +1,7 @@
+/*
+  This is a class that creates the guests which want to ride the pirate ship.
+*/
+
 class Guest {
 
   int xPos;
