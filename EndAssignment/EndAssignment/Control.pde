@@ -16,7 +16,9 @@ class Control {
   int bar;
   boolean isOpen;
   
+  int seat;
   color guests = color(255, 0, 0);
+  boolean fill = false;
  
   Control(int xPos, int yPos) {
     this.xPos = xPos;
@@ -25,7 +27,7 @@ class Control {
 
   void update() {
     indicate();
-    move();
+    actuate();
   }
   
   void indicate(){
@@ -50,7 +52,7 @@ class Control {
     }
   }
   
-  void move() {
+  void actuate() {
     
     if (start) {
       timer2++;

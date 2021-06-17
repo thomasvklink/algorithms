@@ -1,7 +1,9 @@
 class Boat {
 
   //calling classes
+  Control control;
   ParticleSystem drops;
+  Guest[] guests = new Guest[10];
 
   //settting variables for position
   int xPos;
@@ -26,7 +28,11 @@ class Boat {
   float timer;
 
   Boat(int xPos, int yPos) { //constructor
+    control = new Control(0,0);
     drops = new ParticleSystem(xPos, yPos);
+    for (int i = 0; i < guests.length; i ++ ) { 
+      guests[i] = new Guest();
+    }
     this.xPos = xPos;
     this.yPos = yPos;
     c=300;
@@ -44,6 +50,14 @@ class Boat {
     rotate(totalRotation);
 
     //Seat 1
+    //-Guest
+    pushMatrix();
+    translate(-165, 655);
+    if (control.seat > 0){
+    guests[0].render(0, 0);
+    }
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(-165, 655);
     rotate(bars-3.2);
@@ -51,7 +65,14 @@ class Boat {
     rect(0, 0, 40, 1);
     popMatrix();
 
+
     //Seat 2
+    //-Guest
+    pushMatrix();
+    translate(-120, 660);
+    guests[1].render(0, 0);
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(-120, 660);
     rotate(bars-3.2);
@@ -60,6 +81,12 @@ class Boat {
     popMatrix();
 
     //Seat 3
+    //-Guest
+    pushMatrix();
+    translate(-75, 665);
+    guests[2].render(0, 0);
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(-75, 665);
     rotate(bars-3.2);
@@ -68,14 +95,12 @@ class Boat {
     popMatrix();
 
     //Seat 4
+    //-Guest
     pushMatrix();
-    translate(-75, 665);
-    rotate(bars-3.2);
-    stroke(0);
-    rect(0, 0, 40, 1);
+    translate(-25, 670);
+    guests[3].render(0, 0);
     popMatrix();
-
-    //Seat 5
+    //-Bar
     pushMatrix();
     translate(-25, 670);
     rotate(bars-3.2);
@@ -85,7 +110,13 @@ class Boat {
 
     //MIDDLE OF BOAT
 
-    //Seat 6
+    //Seat 5
+    //-Guest
+    pushMatrix();
+    translate(0, 670);
+    guests[4].render(25, 2);
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(0, 670);
     rotate(-bars);
@@ -93,7 +124,13 @@ class Boat {
     rect(0, 0, 40, 1);
     popMatrix();
 
-    //Seat 7
+    //Seat 6
+    //-Guest
+    pushMatrix();
+    translate(50, 670);
+    guests[5].render(25, 0);
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(50, 670);
     rotate(-bars);
@@ -101,7 +138,13 @@ class Boat {
     rect(0, 0, 40, 1);
     popMatrix();
 
-    //Seat 8
+    //Seat 7
+    //-Guest
+    pushMatrix();
+    translate(95, 665);
+    guests[6].render(25, 0);
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(95, 665);
     rotate(-bars);
@@ -109,7 +152,13 @@ class Boat {
     rect(0, 0, 40, 1);
     popMatrix();
 
-    //Seat 9
+    //Seat 8
+    //-Guest
+    pushMatrix();
+    translate(140, 660);
+    guests[7].render(25, 0);
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(140, 660);
     rotate(-bars);
@@ -117,7 +166,13 @@ class Boat {
     rect(0, 0, 40, 1);
     popMatrix();
 
-    //Seat 10
+    //Seat 9
+    //-Guest
+    pushMatrix();
+    translate(185, 655);
+    guests[8].render(25, 0);
+    popMatrix();
+    //-Bar
     pushMatrix();
     translate(185, 655);
     rotate(-bars);
@@ -148,6 +203,7 @@ class Boat {
     totalRotation += usedVelocity;
     angularVelocity += followingTorque - torque;
   }
+
   void particles() {
     if (!isMoving) {
       pushMatrix();
