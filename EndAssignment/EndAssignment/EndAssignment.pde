@@ -18,7 +18,6 @@ void setup() {
 
 void draw() {
   background(224, 255, 255);
-  ship.particles();
   ship.update();
   water.movingWater();
   flock.update();
@@ -28,9 +27,6 @@ void draw() {
   control.render();
 }
 
-void mouseDragged(){
-  flock.addBird(new Bird(mouseX, mouseY));
-}
 
 void mousePressed(){
   control.operate(mouseX,mouseY);
