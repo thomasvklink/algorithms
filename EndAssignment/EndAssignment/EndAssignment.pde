@@ -1,3 +1,5 @@
+import gifAnimation.*;
+
 Flocking flock;
 Water water;
 Boat ship;
@@ -11,8 +13,8 @@ void setup() {
   ship = new Boat(width/2, height/2);
   ship.load();
   control = new Control(width-200, height-200);
-  for (int i = 0; i < 20; i++) {
-    flock.addBird(new Bird(random(0, width), random(height/6, 0)));
+  for (int i = 0; i < 10; i++) {
+    flock.addBird(new Bird(random(0, width), random(height/6, 0), this));
   }
 }
 
@@ -27,6 +29,6 @@ void draw() {
   control.render();
 }
 
-void mousePressed(){
-  control.operate(mouseX,mouseY);
+void mousePressed() {
+  control.operate(mouseX, mouseY);
 }
