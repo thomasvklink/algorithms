@@ -3,11 +3,9 @@
 class ParticleSystem { //class initialisation
 
   //setting variables
-  PVector pos;
   ArrayList<Particle> particles;
 
   ParticleSystem(float x, float y) { //constructor
-    pos= new PVector(x, y);
     particles = new ArrayList<Particle>();
   }
   void particleAdd(float posX, float posY) {

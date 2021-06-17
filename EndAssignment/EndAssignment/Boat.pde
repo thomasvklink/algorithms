@@ -19,7 +19,7 @@ class Boat {
   float c;
   float angularVelocity = 0.001;
   float totalRotation = 0.0;
-  
+
   float rotation;
   float bars = 20;
   boolean isMoving;
@@ -38,7 +38,6 @@ class Boat {
   }
 
   void render() {
-    drops.show();
     pushMatrix();
     translate(xPos, yPos-300);
     rotate(totalRotation);
@@ -127,19 +126,18 @@ class Boat {
       
     shape(boat, 0, 210);
     popMatrix();
-    
-    shape(support, width/2,height/2-100);
+    shape(support, width/2, height/2-100);
   }
 
   void update() {
     swing(incomingVelocity, followingTorque);
     drops.update();
-    if (abs(totalRotation) < 0.02) {
+    if (abs(totalRotation) < 0.05) {
       isMoving = false;
     } else {
       isMoving = true;
     }
-    
+    particles();
     //println(totalRotation, isMoving);
   };
 
@@ -151,9 +149,28 @@ class Boat {
     angularVelocity += followingTorque - torque;
   }
   void particles() {
-    if (totalRotation > 0.3 || totalRotation < -0.3) {
-      drops.particleAdd(random(ship.xPos+150, ship.xPos-150) , yPos+400);
-      println("it works");
+    println(totalRotation, isMoving);
+    pushMatrix();
+    translate(xPos, yPos-300);
+    rotate(totalRotation);
+    pushMatrix();
+    translate(0, 670);
+    rotate(-bars);
+    if (totalRotation > -0.3) {
+      pushMatrix();
+      rotate(-totalRotation);
+      rotate(bars);
+      drops.show();
+      popMatrix();}
+     else {
+      drops.show();
+    }
+    popMatrix();
+    popMatrix();
+    if (!isMoving) {
+      drops.particleAdd(random(-300, 300),0);
+    } else {
+      drops.particleAdd(random(totalRotation*-30, totalRotation*30), random(totalRotation*-100, totalRotation*100));
     }
   }
 }

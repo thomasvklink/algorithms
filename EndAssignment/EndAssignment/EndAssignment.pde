@@ -18,7 +18,6 @@ void setup() {
 
 void draw() {
   background(224, 255, 255);
-  ship.particles();
   ship.update();
   water.movingWater();
   flock.update();

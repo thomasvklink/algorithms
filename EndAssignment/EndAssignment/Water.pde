@@ -15,7 +15,7 @@ class Water {
     fill(5, 38, 123);
     for (int x = 0; x < width; x+=15) {
       float y = map(noise(xoff, yoff), 0, 1, 200, 300);
-      vertex(x*1.01, y*3.9);
+      vertex(x*1.01, y*4);
       xoff+=0.01;
     }
     yoff+=0.005;
