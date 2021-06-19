@@ -19,6 +19,7 @@ Flocking flock;
 Water water;
 Boat ship;
 Control control;
+Environment environment;
 
 void setup() {
   //Sketch settings
@@ -28,6 +29,9 @@ void setup() {
   //Creating objects
   flock = new Flocking();
   water = new Water();
+  environment = new Environment(width/2, height/2);
+  fullScreen(2);
+  shapeMode(CENTER);
   ship = new Boat(width/2, height/2);
   control = new Control(width-200, height-200);
   for (int i = 0; i < 10; i++) {
@@ -35,6 +39,7 @@ void setup() {
   }
     //Loading images
     ship.load();
+  environment.load();
 }
 
 void draw() {
@@ -44,6 +49,7 @@ void draw() {
   flock.update();
   flock.render();
   ship.render();
+  environment.render();
   control.update();
   control.render();
 }

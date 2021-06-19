@@ -31,9 +31,10 @@ class Boat {
   float bars = 20;
   boolean isMoving;
   float timer;
+  
+  int seat = 0;
 
   Boat(int xPos, int yPos) { //constructor
-    control = new Control(0,0);
     drops = new ParticleSystem(xPos, yPos);
     for (int i = 0; i < guests.length; i ++ ) { 
       guests[i] = new Guest();
@@ -50,6 +51,7 @@ class Boat {
   }
 
   void render() {
+    
     pushMatrix();
     translate(xPos, yPos-300);
     rotate(totalRotation);
@@ -58,7 +60,7 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(-165, 655);
-    if (control.seat > 0){
+    if (seat > 0){
     guests[0].render(0, 0);
     }
     popMatrix();
@@ -75,7 +77,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(-120, 660);
+    if (seat > 1){
     guests[1].render(0, 0);
+    }
     popMatrix();
     //-Bar
     pushMatrix();
@@ -89,7 +93,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(-75, 665);
+    if (seat > 2){
     guests[2].render(0, 0);
+    }
     popMatrix();
     //-Bar
     pushMatrix();
@@ -103,7 +109,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(-25, 670);
+    if (seat > 3){
     guests[3].render(0, 0);
+    }
     popMatrix();
     //-Bar
     pushMatrix();
@@ -119,7 +127,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(0, 670);
+    if (seat > 4){
     guests[4].render(25, 2);
+    }
     popMatrix();
     //-Bar
     pushMatrix();
@@ -133,7 +143,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(50, 670);
+    if (seat > 3){
     guests[5].render(25, 0);
+    }
     popMatrix();
     //-Bar
     pushMatrix();
@@ -147,7 +159,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(95, 665);
+    if (seat > 2){
     guests[6].render(25, 0);
+    }
     popMatrix();
     //-Bar
     pushMatrix();
@@ -161,7 +175,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(140, 660);
+    if (seat > 1){
     guests[7].render(25, 0);
+    }
     popMatrix();
     //-Bar
     pushMatrix();
@@ -175,7 +191,9 @@ class Boat {
     //-Guest
     pushMatrix();
     translate(185, 655);
+    if (seat > 0){
     guests[8].render(25, 0);
+    }
     popMatrix();
     //-Bar
     pushMatrix();

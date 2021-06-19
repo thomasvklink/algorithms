@@ -5,37 +5,43 @@
 
 class Control {
 
+  Boat schip;
+  
   int xPos;
   int yPos;
 
   int timer = 120;
   int timer2;
   int timer3;
-  
-  Boat schip;
-  
+  int timer4;
+
   color control;
   boolean start;
-  
+
   color bars;
   int bar;
   boolean isOpen;
-  
+
   int seat;
+  int line;
   color guests = color(255, 0, 0);
-  boolean fill = false;
- 
+  boolean load = false;
+  boolean unload = false;
+  boolean loaded;
+
   Control(int xPos, int yPos) {
     this.xPos = xPos;
     this.yPos = yPos;
+    seat = 0;
+    line =5;
   }
 
   void update() {
     indicate();
     actuate();
   }
-  
-  void indicate(){
+
+  void indicate() {
     //Indicator colors to start swinging, only green when the ship is not swinging and the restaints are closed
     if (ship.isMoving || isOpen) {
       control = color(255, 0, 0);
@@ -48,17 +54,17 @@ class Control {
         bars = color(0, 255, 0);
       }
     }
-    
-    if (isOpen){ //If the restaints are opened in the station, indicator light will turn blue.
+
+    if (isOpen) { //If the restaints are opened in the station, indicator light will turn blue.
       bars = color(0, 0, 255);
       guests = color(0, 255, 0);
     } else {
       guests = color(255, 0, 0);
     }
   }
-  
+
   void actuate() {
-    
+
     if (start) {
       timer2++;
       if (timer2 < 60) {
@@ -68,28 +74,65 @@ class Control {
         timer2 = 0;
       }
     }
-    
-    if(bar == 1){
+
+    if (bar == 1) {
       timer3++;
-      if (timer3 < 60){
+      if (timer3 < 60) {
         ship.bars = ship.bars + 0.01;
       } else {
         bar = 3;
         timer3 = 0;
       }
     }
-    
-    if(bar == 2){
+
+    if (bar == 2) {
       timer3++;
-      if (timer3 < 60){
+      if (timer3 < 60) {
         ship.bars = ship.bars - 0.01;
       } else {
         bar = 0;
         timer3 = 0;
       }
     }
+
+    if (load) {
+      timer4++;
+      ship.seat = 1;
+      if (timer4 < 60) {
+        ship.seat = 2;
+      } else if (timer4 < 120) {
+        ship.seat = 3;
+      } else if (timer4 < 180) {
+        ship.seat = 4;
+      } else if (timer4 < 240) {
+        ship.seat = 5;
+      } else {
+        ship.seat = 5;
+        timer4 = 0;
+        load = false;
+        loaded = true;
+      }
+    }
+
+    if (unload) {
+      timer4++;
+      ship.seat = 5;
+      if (timer4 < 60) {
+        ship.seat = 4;
+      } else if (timer4 < 120) {
+        ship.seat = 3;
+      } else if (timer4 < 180) {
+        ship.seat = 2;
+      } else if (timer4 < 240) {
+        ship.seat = 1;
+      } else {
+        ship.seat = 0;
+        timer4 = 0;
+        unload = false;
+        loaded = false;
+      }
+    }
   }
-  
 
   void render() {
     //Panel
@@ -109,7 +152,7 @@ class Control {
     fill(0);
     noStroke();
     text("Start swinging", xPos+30, yPos+55);
-    
+
     //Restaints button
     stroke(150);
     strokeWeight(4);
@@ -118,7 +161,7 @@ class Control {
     fill(0);
     noStroke();
     text("Open/Close restaints", xPos+30, yPos+105);
-    
+
     //Guest control
     stroke(150);
     strokeWeight(4);
@@ -127,7 +170,6 @@ class Control {
     fill(0);
     noStroke();
     text("Load/Unload guests", xPos+30, yPos+155);
-    
   }
 
   void operate(int mouseXpos, int mouseYpos) {
@@ -135,23 +177,25 @@ class Control {
     if (!ship.isMoving && !isOpen &&dist(mouseXpos, mouseYpos, xPos, yPos+50) < 30) {
       start = true;
     }
+    
     //Open/close restaints button
-    if (!ship.isMoving && dist(mouseXpos, mouseYpos, xPos, yPos+100) < 30){
-      if(bar ==0){
+    if (!ship.isMoving && dist(mouseXpos, mouseYpos, xPos, yPos+100) < 30) {
+      if (bar ==0) {
         bar = 1;
         isOpen = true;
-      } else if (bar == 3){
+      } else if (bar == 3) {
         bar = 2;
         isOpen = false;
       }
     }
-    
-    if(!ship.isMoving && isOpen && dist(mouseXpos, mouseYpos, xPos, yPos+150) < 30){
+
+    if (!ship.isMoving && isOpen && dist(mouseXpos, mouseYpos, xPos, yPos+150) < 30) {
+      if (!loaded){
+        load = true;
+      } else {
+        unload = true;
+      }
       
     }
-    
   }
-
-  
-
 }
