@@ -4,30 +4,59 @@
 
 class Environment{
   
-  Guest[] guests = new Guest[10];
-  
   int xPos;
   int yPos;
   
+  int spots = 0;
+  boolean queue = false;
+ 
   PShape boardwalk;
   
   Environment(int xPos, int yPos){
     this.xPos = xPos;
     this.yPos = yPos;
-    for (int i = 0; i < guests.length; i ++ ) { 
-      guests[i] = new Guest();
-    }
   }
   
   void load(){
     boardwalk = loadShape("boardwalk.svg");
   }
   
-  void render(){
-    shape(boardwalk, xPos, yPos-5);
-    for (int i = 0; i < guests.length; i++){
-      guests[i].render(xPos+(25*i),yPos+400);
+  void update(){
+    switch(ship.seat){
+      case 0:
+      spots = 0;
+      break;
+      case 1:
+      spots = 2;
+      break;
+      case 2:
+      spots = 4;
+      break;
+      case 3:
+      spots = 6;
+      break;
+      case 4:
+      spots = 8;
+      break;
+      case 5:
+      spots = 9;
+      queue = true;
+      break;
     }
-    println(control.seat);
+    
+    if (queue){
+      spots = 0;
+      if (ship.seat == 0){
+      queue = false;
+      }
+    }
+    
+  }
+  
+  void render(Guest[] guests){
+    shape(boardwalk, xPos, yPos-5);
+    for (int i = 0; i < guests.length-spots; i++){
+      guests[i].render((xPos+300)+(25*i),yPos+420);
+    }
   }
 }

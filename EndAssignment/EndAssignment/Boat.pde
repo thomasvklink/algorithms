@@ -8,7 +8,6 @@ class Boat {
   //calling classes
   Control control;
   ParticleSystem drops;
-  Guest[] guests = new Guest[10];
 
   //settting variables for position
   int xPos;
@@ -36,9 +35,6 @@ class Boat {
 
   Boat(int xPos, int yPos) { //constructor
     drops = new ParticleSystem(xPos, yPos);
-    for (int i = 0; i < guests.length; i ++ ) { 
-      guests[i] = new Guest();
-    }
     this.xPos = xPos;
     this.yPos = yPos;
     c=300;
@@ -50,7 +46,7 @@ class Boat {
     support = loadShape("support.svg");
   }
 
-  void render() {
+  void render(Guest[] guests) {
     
     pushMatrix();
     translate(xPos, yPos-300);

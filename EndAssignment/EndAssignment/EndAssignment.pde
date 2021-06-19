@@ -20,36 +20,39 @@ Water water;
 Boat ship;
 Control control;
 Environment environment;
+Guest[] guests = new Guest[9];
 
 void setup() {
   //Sketch settings
-  fullScreen();
+  fullScreen(2);
   shapeMode(CENTER);
-
   //Creating objects
   flock = new Flocking();
   water = new Water();
   environment = new Environment(width/2, height/2);
-  fullScreen(2);
-  shapeMode(CENTER);
+  for (int i = 0; i < guests.length; i ++ ) { 
+      guests[i] = new Guest();
+    }
   ship = new Boat(width/2, height/2);
-  control = new Control(width-200, height-200);
+  control = new Control(width-200, height-225);
   for (int i = 0; i < 10; i++) {
     flock.addBird(new Bird(random(0, width), random(height/6, 0), this));
   }
-    //Loading images
-    ship.load();
+  
+  //Loading images
+  ship.load();
   environment.load();
 }
 
 void draw() {
   background(224, 255, 255);
-  ship.update();
   water.movingWater();
   flock.update();
   flock.render();
-  ship.render();
-  environment.render();
+  ship.update();
+  ship.render(guests);
+  environment.update();
+  environment.render(guests);
   control.update();
   control.render();
 }

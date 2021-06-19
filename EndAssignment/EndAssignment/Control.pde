@@ -17,6 +17,8 @@ class Control {
 
   color control;
   boolean start;
+  int rides;
+  int served;
 
   color bars;
   int bar;
@@ -170,12 +172,24 @@ class Control {
     fill(0);
     noStroke();
     text("Load/Unload guests", xPos+30, yPos+155);
+    
+    //Rides
+    text("Rides:", xPos+30, yPos+200);
+    text(rides, xPos+70, yPos+200);
+    
+    //Guests served
+    text("Guests: ", xPos+100, yPos+200);
+    text(served, xPos+150, yPos+200);
   }
 
   void operate(int mouseXpos, int mouseYpos) {
     //Start ride button
     if (!ship.isMoving && !isOpen &&dist(mouseXpos, mouseYpos, xPos, yPos+50) < 30) {
       start = true;
+      rides++;
+      if(loaded){
+      served = served + 9;
+      }
     }
     
     //Open/close restaints button
