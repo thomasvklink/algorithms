@@ -3,27 +3,33 @@
  It handles the controls of the ship and the constraints of the guests as well as being able to unload and onload guests onto the ship.
 */
 
-class Control {
-
+class Control {//class initialisation
+  
+  //reference classes
   Boat schip;
   
+  //variables for position
   int xPos;
   int yPos;
-
+  
+  //timers 
   int timer = 120;
   int timer2;
   int timer3;
   int timer4;
-
+  
+  //creating variables which help with the design of the control panel
   color control;
   boolean start;
   int rides;
   int served;
-
+  
+  //creating variables for the bars
   color bars;
   int bar;
   boolean isOpen;
-
+  
+  //creating variables for the loading and unloading of the guests
   int seat;
   int line;
   color guests = color(255, 0, 0);
@@ -31,7 +37,7 @@ class Control {
   boolean unload = false;
   boolean loaded;
 
-  Control(int xPos, int yPos) {
+  Control(int xPos, int yPos) { //constructor
     this.xPos = xPos;
     this.yPos = yPos;
     seat = 0;
@@ -69,7 +75,7 @@ class Control {
 
     if (start) {
       timer2++;
-      if (timer2 < 60) {
+      if (timer2 < 60) { //make the ship rock faster in the first 60 frames
         ship.totalRotation = ship.totalRotation + 0.06;
       } else {
         start = false;
@@ -97,7 +103,7 @@ class Control {
       }
     }
 
-    if (load) {
+    if (load) { //load the guests in their seats in intervals
       timer4++;
       ship.seat = 1;
       if (timer4 < 60) {
@@ -116,7 +122,7 @@ class Control {
       }
     }
 
-    if (unload) {
+    if (unload) { //unload the guests from their seats in intervals
       timer4++;
       ship.seat = 5;
       if (timer4 < 60) {

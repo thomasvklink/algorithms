@@ -4,19 +4,21 @@ This is the class that calls the particles from the class Particle and puts them
 
 class ParticleSystem { //class initialisation
 
-  //setting variables
+  //Referencing classes & creating arraylist
   ArrayList<Particle> particles;
 
   ParticleSystem(float x, float y) { //constructor
     particles = new ArrayList<Particle>();
   }
   void particleAdd(float posX, float posY) {
+      //Creating objects
     for (int i=0; i < 5; i++) {
       particles.add(new Particle(posX, posY));
     }
   }
 
   void update() {
+    //update the particles if they are within the size of the arraylist
     for (int i=0; i<particles.size(); i++) {
       Particle p = particles.get(i);
       p.update();
@@ -27,6 +29,7 @@ class ParticleSystem { //class initialisation
   }
 
   void show() {
+    //ahow the particles if they are within the size of the arraylist
     for (int i=0; i<particles.size(); i++) {
       Particle p = particles.get(i);
       p.show();

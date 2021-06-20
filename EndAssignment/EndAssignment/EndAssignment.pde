@@ -26,6 +26,7 @@ void setup() {
   //Sketch settings
   fullScreen(2);
   shapeMode(CENTER);
+  
   //Creating objects
   flock = new Flocking();
   water = new Water();

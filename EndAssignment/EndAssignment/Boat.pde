@@ -3,7 +3,7 @@
   It handles the formula's for the mass spring damper as well.
 */
 
-class Boat {
+class Boat {//class initialisation
 
   //calling classes
   Control control;
@@ -25,12 +25,14 @@ class Boat {
   float c;
   float angularVelocity = 0.001;
   float totalRotation = 0.0;
-
+  
+  //setting variables for the safety bars
   float rotation;
   float bars = 20;
   boolean isMoving;
   float timer;
   
+  //setting variable for seat numbers
   int seat = 0;
 
   Boat(int xPos, int yPos) { //constructor
@@ -42,12 +44,13 @@ class Boat {
   }
 
   void load() {
+    //loading shapes
     boat = loadShape("boat.svg");
     support = loadShape("support.svg");
   }
 
   void render(Guest[] guests) {
-    
+    //creating the shapes, bars & the guests
     pushMatrix();
     translate(xPos, yPos-300);
     rotate(totalRotation);
@@ -216,6 +219,7 @@ class Boat {
   };
 
   void swing(float incomingVelocity, float followingTorque) {
+    //formula's for the mass-spring-damper system
     float usedVelocity = angularVelocity - incomingVelocity; 
     float friction = usedVelocity * f;
     torque = (1 / c * totalRotation + friction);
@@ -224,7 +228,7 @@ class Boat {
   }
 
   void particles() {
-    if (!isMoving) {
+    if (!isMoving) { //if the boat is no longer moving then show the drops that drip from the boat
       pushMatrix();
       translate(xPos, yPos+370);
       rotate(totalRotation);

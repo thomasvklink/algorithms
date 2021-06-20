@@ -1,23 +1,27 @@
 /*
-  This is a class that forms the background of the sketch. It features houses, some trees and the dock on which the pirate ship stands.
+  This is a class that forms the background of the sketch. The dock on which the pirate ship stands.
 */
 
-class Environment{
+class Environment{//class initialisation
   
+  //creating variables for position
   int xPos;
   int yPos;
   
+  //creating variables for the guests
   int spots = 0;
   boolean queue = false;
  
+ //calling in the PShape
   PShape boardwalk;
   
-  Environment(int xPos, int yPos){
+  Environment(int xPos, int yPos){//constructor
     this.xPos = xPos;
     this.yPos = yPos;
   }
   
   void load(){
+    //load PShape
     boardwalk = loadShape("boardwalk.svg");
   }
   
@@ -54,6 +58,7 @@ class Environment{
   }
   
   void render(Guest[] guests){
+    //making of the shape as well as rendering the guests
     shape(boardwalk, xPos, yPos-5);
     for (int i = 0; i < guests.length-spots; i++){
       guests[i].render((xPos+300)+(25*i),yPos+420);

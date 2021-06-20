@@ -1,9 +1,9 @@
 /*
-  This is a class Bird that call forth the gif for the birds to create nice looking flapping birds. 
-  These birds will later on be used in the flocking class.
+  This is a class Bird that call forth the gif for the birds to create a flapping bird. 
+  This bird will later on be used in the flocking class.
 */
 
-class Bird {
+class Bird {//class initialisation
 
   //variables to use the gif
   PApplet app; 
@@ -34,7 +34,8 @@ class Bird {
   }
 
   void render() {
-    float theta = vel.heading();
+    //creating the bird
+    float theta = vel.heading(); //making sure the bird flies in the correct way
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
@@ -51,6 +52,7 @@ class Bird {
   }
 
   void borders() {
+    //check if the bird would fly to far outside the screen and have the bird then move the opposite way
     if (pos.x < -xSize) vel.x = - vel.x;
     if (pos.y < -ySize) vel.y = - vel.y;
     if (pos.x > width+xSize) vel.x = - vel.x;

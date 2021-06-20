@@ -3,11 +3,13 @@
   Furthermore, in this class the principle of Flocking is created and applied to the birds.
 */
 
-class Flocking {
-
+class Flocking {//class initialisation
+  
+  //Reference class & creating Arraylist
   ArrayList<Bird> birds;
 
-  Flocking() {
+  Flocking() { //constructor
+    //Creating object
     birds = new ArrayList<Bird>();
   }
   
@@ -27,8 +29,8 @@ class Flocking {
           PVector v3 = ali(f, other);
           // Arbitrarily weight these forces
           v1.mult(4.0); //Seperation
-          v2.mult(0.5); //Cohesion
-          v3.mult(0.5); //Alignment
+          v2.mult(1.0); //Cohesion
+          v3.mult(1.0); //Alignment
           //Apply force vectors
           apply(f, v1);
           apply(f, v2);
@@ -41,8 +43,8 @@ class Flocking {
   void apply(Bird f, PVector force) {
     f.acc.add(force);
   }
-
-  PVector sep(Bird f, Bird other) {
+  //separation PVector gets value
+  PVector sep(Bird f, Bird other) { 
     float desiredseparation = 25.0f;
     PVector steer = new PVector(0, 0, 0);
     int count = 0;
@@ -71,7 +73,8 @@ class Flocking {
     }
     return steer;
   }
-
+  
+  //alignment PVector gets value
   PVector ali(Bird f, Bird other) {
     float neighbordist = 50;
     PVector sum = new PVector(0, 0);
@@ -93,7 +96,8 @@ class Flocking {
       return new PVector(0, 0);
     }
   }
-
+  
+  //cohesion PVector gets value
   PVector coh(Bird f, Bird other) {
     float neighbordist = 50;
     PVector sum = new PVector(0, 0);   // Start with empty vector to accumulate all positions
@@ -123,6 +127,7 @@ class Flocking {
   }
 
   void addBird(Bird f) {
+    //add the birds onto the sketch
     birds.add(f);
   }
 }

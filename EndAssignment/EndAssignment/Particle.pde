@@ -1,7 +1,7 @@
 /*
 This is a class Particle in which the particle gets created. 
-This particle will represent the waterdrop which drips from the boat
-*/
+ This particle will represent the waterdrop which drips from the boat.
+ */
 
 
 class Particle { //class initialisation
@@ -14,22 +14,23 @@ class Particle { //class initialisation
   int shape;
 
   Particle(float x, float y) {  //constructor
-    pos=new PVector(x, y);
+    pos=new PVector(x, y); 
     speed=new PVector(random(-1, 1), random(2, 4));
     lifetime = int(random(20, 90)); //Random lifetime between 20 - 90 frames
   }
 
   void show() {
+    //creating the waterdrop
     fill(5, 38, 123, lifetime); //Transparency increases as lifetime does. Fade out effect.
-     pushMatrix();
-      translate(pos.x, pos.y+15);
-      circle(0, 0, 10);
-      triangle(-5, 0, 0, -15, 5, 0);
+    pushMatrix();
+    translate(pos.x, pos.y+15);
+    circle(0, 0, 10);
+    triangle(-5, 0, 0, -15, 5, 0);
     popMatrix();
   }
 
   void update() {
-    pos.add(speed); //SPEEED
+    pos.add(speed); //SPEED
     lifetime --; //Decrease lifetime each frame
   }
 
@@ -38,6 +39,7 @@ class Particle { //class initialisation
   }
 
   void reset(float posX, float posY) {
+    //reseting waterdrop to starting position and giving it another lifetime
     pos.x = posX;
     pos.y = posY;
     lifetime = int(random(20, 90));
